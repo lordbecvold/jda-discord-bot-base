@@ -78,8 +78,10 @@ public class CommandManager {
 
         if (!ConfigManager.instance.getTerminalChannel().equalsIgnoreCase("all")) {
             if (!ConfigManager.instance.getTerminalChannel().equalsIgnoreCase(event.getChannel().getId())) {
-                SendPrivateMessage.sendPrivateMessage(event.getAuthor(), "```You can use commands only in " + ConfigManager.instance.getTerminalChannelName() + " channel!```");
-                return;
+                if (!event.getMessage().getContentRaw().startsWith("!clear")) {
+                    SendPrivateMessage.sendPrivateMessage(event.getAuthor(), "```You can use commands only in " + ConfigManager.instance.getTerminalChannelName() + " channel!```");
+                    return;
+                }
             }
         }
 
