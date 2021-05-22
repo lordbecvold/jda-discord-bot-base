@@ -53,6 +53,14 @@ public class CommandManager {
     }
 
     public void run(GuildMessageReceivedEvent event) {
+
+        //Check if normal user can run command
+        if (ConfigManager.instance.isDevMode()) {
+            if (!event.getAuthor().getId().equalsIgnoreCase(ConfigManager.instance.getDeveloperAccountID())) {
+                return;
+            }
+        }
+
         final String msg = event.getMessage().getContentRaw();
 
         if(!msg.startsWith(Main.getCommandPrefix())) {
