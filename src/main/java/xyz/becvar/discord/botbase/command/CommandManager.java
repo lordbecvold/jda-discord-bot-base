@@ -78,7 +78,7 @@ public class CommandManager {
 
         if (!ConfigManager.instance.getTerminalChannel().equalsIgnoreCase("all")) {
             if (!ConfigManager.instance.getTerminalChannel().equalsIgnoreCase(event.getChannel().getId())) {
-                if (!event.getMessage().getContentRaw().startsWith("!clear")) {
+                if (!event.getMessage().getContentRaw().startsWith(ConfigManager.instance.getPrefix() + "clear")) {
                     SendPrivateMessage.sendPrivateMessage(event.getAuthor(), "```You can use commands only in " + ConfigManager.instance.getTerminalChannelName() + " channel!```");
                     return;
                 }
