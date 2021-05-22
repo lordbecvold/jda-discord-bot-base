@@ -64,7 +64,7 @@ public class ClearCommand implements ICommand {
 
     @Override
     public String getHelp() {
-        return "Smaže zprávy podle počtu";
+        return "Delete msg by count";
     }
 }
 
