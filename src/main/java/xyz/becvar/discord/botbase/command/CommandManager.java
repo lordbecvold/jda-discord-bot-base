@@ -54,6 +54,13 @@ public class CommandManager {
 
     public void run(GuildMessageReceivedEvent event) {
 
+
+        //Check if user is bot
+        if (event.getAuthor().isBot()) {
+            return;
+        }
+
+
         //Check if normal user can run command
         if (ConfigManager.instance.isDevMode()) {
             if (!event.getAuthor().getId().equalsIgnoreCase(ConfigManager.instance.getDeveloperAccountID())) {
