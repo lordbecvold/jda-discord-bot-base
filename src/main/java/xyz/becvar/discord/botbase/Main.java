@@ -34,7 +34,7 @@ public class Main {
 
         // Log msg to console
         if (ConfigManager.instance.isDevMode()) {
-            Logger.INSTANCE.logToConsole("Developer mode is enabled!");
+            Logger.INSTANCE.logToConsole("Developer mode is enabled, Dev id is " + ConfigManager.instance.getDeveloperAccountID());
         }
 
 

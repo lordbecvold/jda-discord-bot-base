@@ -124,6 +124,18 @@ public class ConfigManager<obj> {
 
 
 
+    //Load developer account id
+    public String getDeveloperAccountID() {
+        if (getConfigValue("DevUserID").isEmpty()) {
+            Logger.INSTANCE.logToConsole("Error in dev id, please check DevUserID in config file");
+            return "none";
+        } else {
+            return getConfigValue("DevUserID");
+        }
+    }
+
+
+
     //load default role id
     public String getDefaultRole() {
         if (getConfigValue("DefaultRole").isEmpty()) {
@@ -206,8 +218,6 @@ public class ConfigManager<obj> {
                 object = parser.parse(new FileReader("config.json"));
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
             JSONObject jsonObject = (JSONObject) object;
             value = (String) jsonObject.get(name);
@@ -240,6 +250,7 @@ public class ConfigManager<obj> {
                         "  \"Status\": \"Online\",\n" +
                         "  \"BotName\": \"JDA-BASE\",\n" +
                         "  \"DevMode\": \"0\",\n" +
+                        "  \"DevUserID\": \"DEV_ID\",\n" +
                         "  \"CommandPrefix\": \"!\",\n" +
                         "  \"TerminalChannel\": \"all\",\n" +
                         "  \"TerminalChannelName\": \"Terminal\",\n" +
@@ -250,7 +261,6 @@ public class ConfigManager<obj> {
                         "  \"SystemLoggerEnabled\": \"0\"\n" +
                         "}");
             }
-            catch (Exception e) {}
         } catch (IOException e) {
             e.printStackTrace();
         }
