@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import xyz.becvar.discord.botbase.Main;
 import xyz.becvar.discord.botbase.command.commands.HelpCommand;
 import xyz.becvar.discord.botbase.command.commands.TestCommand;
+import xyz.becvar.discord.botbase.command.commands.admin.ClearCommand;
 import xyz.becvar.discord.botbase.config.ConfigManager;
 import xyz.becvar.discord.botbase.file.FileSystem;
 import xyz.becvar.discord.botbase.utils.Logger;
@@ -28,6 +29,7 @@ public class CommandManager {
 
         //Init all commands
         addCommand(new HelpCommand(this));
+        addCommand(new ClearCommand());
 
         //Init developer command
         if (ConfigManager.instance.isDevMode()) {
