@@ -44,3 +44,6 @@ This project requires Java 11.
 * Json-simple
    * Version: **1.1.1**
    * [Website](https://code.google.com/archive/p/json-simple/)
+* Mysql-Connector
+  * Version: **8.0.27**
+  * [Website](hhttps://dev.mysql.com/doc/connector-j/8.0/en/)

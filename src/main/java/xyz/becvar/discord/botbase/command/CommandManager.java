@@ -1,7 +1,7 @@
 package xyz.becvar.discord.botbase.command;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import xyz.becvar.discord.botbase.Main;
 import xyz.becvar.discord.botbase.command.commands.HelpCommand;
 import xyz.becvar.discord.botbase.command.commands.TestCommand;
@@ -9,6 +9,7 @@ import xyz.becvar.discord.botbase.command.commands.admin.ClearCommand;
 import xyz.becvar.discord.botbase.config.ConfigManager;
 import xyz.becvar.discord.botbase.file.FileSystem;
 import xyz.becvar.discord.botbase.utils.Logger;
+import xyz.becvar.discord.botbase.utils.MysqlUtils;
 import xyz.becvar.discord.botbase.utils.SendPrivateMessage;
 import java.awt.*;
 import java.util.*;
@@ -54,7 +55,7 @@ public class CommandManager {
         return commands.get(commandName);
     }
 
-    public void run(GuildMessageReceivedEvent event) {
+    public void run(MessageReceivedEvent event) {
 
 
         //Check if user is bot
@@ -95,7 +96,11 @@ public class CommandManager {
             commands.get(command).run(args, event);
 
             if (ConfigManager.instance.isSystemLoggerEnabled()) {
-                FileSystem.saveSystemLog(event.getAuthor().getName() + " used command " + command);
+                if (ConfigManager.instance.isMysqlLoggingEnabled()) {
+                    MysqlUtils.logSystem("Execute command", event.getAuthor().getName() + " used command " + command);
+                } else {
+                    FileSystem.saveSystemLog(event.getAuthor().getName() + " used command " + command);
+                }
             }
 
         } else {
@@ -107,7 +112,7 @@ public class CommandManager {
             usage.setDescription("Sorry command: ``" + command + "`` not found :frowning2: \nYou can use " + Main.getCommandPrefix() + "help command");
             usage.setFooter(event.getAuthor().getAsTag() + " use this command", event.getAuthor().getAvatarUrl());
 
-            event.getChannel().sendMessage(usage.build()).queue();
+            event.getChannel().sendMessageEmbeds(usage.build()).queue();
         }
     }
 }

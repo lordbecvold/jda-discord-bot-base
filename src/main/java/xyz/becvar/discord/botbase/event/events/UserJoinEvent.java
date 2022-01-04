@@ -1,11 +1,14 @@
 package xyz.becvar.discord.botbase.event.events;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import xyz.becvar.discord.botbase.config.ConfigManager;
 import xyz.becvar.discord.botbase.file.FileSystem;
 import xyz.becvar.discord.botbase.utils.Logger;
+import xyz.becvar.discord.botbase.utils.MysqlUtils;
+
 import java.util.Objects;
 
 /*
@@ -28,11 +31,15 @@ public class UserJoinEvent extends ListenerAdapter {
         join.setDescription(event.getMember().getAsMention() + " joined the server :slight_smile: ");
 
         // Send msg
-        event.getGuild().getDefaultChannel().sendMessage(join.build()).queue();
+        event.getGuild().getDefaultChannel().sendMessage((Message) join.build()).queue();
 
 
         if (ConfigManager.instance.isSystemLoggerEnabled()) {
-            FileSystem.saveSystemLog(event.getUser().getName() + " joined the server");
+            if (ConfigManager.instance.isMysqlLoggingEnabled()) {
+                MysqlUtils.logSystem("New user joined server", event.getUser().getName());
+            } else {
+                FileSystem.saveSystemLog(event.getUser().getName() + " joined the server");
+            }
             Logger.INSTANCE.logToConsole(event.getUser().getName() + " joined the server");
         }
     }

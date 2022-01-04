@@ -208,6 +208,71 @@ public class ConfigManager<obj> {
 
 
 
+    //load if enabled mysql logger from json file
+    public boolean isMysqlLoggingEnabled() {
+        if (getConfigValue("LoggingToMysqlEnabled").equalsIgnoreCase("1")) {
+            return true;
+        } else if (getConfigValue("LoggingToMysqlEnabled").equalsIgnoreCase("0")) {
+            return false;
+        } else {
+            Logger.INSTANCE.logToConsole("Error system logger have wrong value, please check LoggingToMysqlEnabled value in config file");
+            SystemUtils.shutdown();
+            return false;
+        }
+    }
+
+
+
+    //load mysql ip from config
+    public String getMysqlServerIP() {
+        if (getConfigValue("MysqlServerIP").isEmpty()) {
+            Logger.INSTANCE.logToConsole("Error in mysql ip, please check MysqlServerIP in config file");
+            return "none";
+        } else {
+            return getConfigValue("MysqlServerIP");
+        }
+    }
+
+
+
+    //load mysql database name from config
+    public String getMysqlDatabaseName() {
+        if (getConfigValue("MysqlDatabaseName").isEmpty()) {
+            Logger.INSTANCE.logToConsole("Error in mysql database name, please check MysqlDatabaseName in config file");
+            return "none";
+        } else {
+            return getConfigValue("MysqlDatabaseName");
+        }
+    }
+
+
+
+
+    //load mysql username from config
+    public String getMysqlUsername() {
+        if (getConfigValue("MysqlUsername").isEmpty()) {
+            Logger.INSTANCE.logToConsole("Error in mysql username, please check MysqlUsername in config file");
+            return "none";
+        } else {
+            return getConfigValue("MysqlUsername");
+        }
+    }
+
+
+
+    //load mysql username from config
+    public String getMysqlPassword() {
+        if (getConfigValue("MysqlPassword").isEmpty()) {
+            Logger.INSTANCE.logToConsole("Error in mysql password, please check MysqlPassword in config file");
+            return "none";
+        } else {
+            return getConfigValue("MysqlPassword");
+        }
+    }
+
+
+
+
     //The config value getter (Get value form json config file by name)
     public String getConfigValue(String name) {
         JSONParser parser = new JSONParser();
@@ -258,7 +323,12 @@ public class ConfigManager<obj> {
                         "  \"UserJoinEventEnabled\": \"0\",\n" +
                         "  \"UserLeaveEventEnabled\": \"0\",\n" +
                         "  \"MessageLoggerEnabled\": \"0\",\n" +
-                        "  \"SystemLoggerEnabled\": \"0\"\n" +
+                        "  \"SystemLoggerEnabled\": \"0\",\n" +
+                        "  \"LoggingToMysqlEnabled\": \"0\",\n" +
+                        "  \"MysqlServerIP\": \"localhost\",\n" +
+                        "  \"MysqlDatabaseName\": \"jdaBotBase\",\n" +
+                        "  \"MysqlUsername\": \"root\",\n" +
+                        "  \"MysqlPassword\": \"root\"\n" +
                         "}");
             }
         } catch (IOException e) {

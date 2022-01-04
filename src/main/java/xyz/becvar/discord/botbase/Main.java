@@ -40,16 +40,22 @@ public class Main {
 
 
         // Create msg log file if not exist and is enabled
-        if (ConfigManager.instance.isMessageLoggerEnabled()) {
-            FileSystem.createFile("msg.log");
+        if (!ConfigManager.instance.isMysqlLoggingEnabled()) {
+            if (ConfigManager.instance.isMessageLoggerEnabled()) {
+                FileSystem.createFile("msg.log");
+            }
         }
+
 
 
 
         //Create system log file if not exist and is enabled
-        if (ConfigManager.instance.isSystemLoggerEnabled()) {
-            FileSystem.createFile("system.log");
+        if (!ConfigManager.instance.isMysqlLoggingEnabled()) {
+            if (ConfigManager.instance.isSystemLoggerEnabled()) {
+                FileSystem.createFile("system.log");
+            }
         }
+
 
 
 
