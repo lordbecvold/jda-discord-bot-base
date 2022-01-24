@@ -21,7 +21,7 @@ public class UserLeaveEvent extends ListenerAdapter {
         EmbedBuilder join = new EmbedBuilder();
         join.setColor(0x66d8ff);
         join.setDescription(event.getUser().getAsMention() + " left the server :slight_frown: ");
-        event.getGuild().getDefaultChannel().sendMessage((Message) join.build()).queue();
+        event.getGuild().getDefaultChannel().sendMessageEmbeds(join.build()).queue();
 
         if (ConfigManager.instance.isSystemLoggerEnabled()) {
             if (ConfigManager.instance.isMysqlLoggingEnabled()) {
