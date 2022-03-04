@@ -2,4 +2,4 @@ target/
 .idea/
 msg.log
 system.log
-config.json
+config.yml
