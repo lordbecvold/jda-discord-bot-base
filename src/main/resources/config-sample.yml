@@ -1,0 +1,14 @@
+token: "token"
+ActivityType: "Listening"
+statusText: "!help"
+status: "online"
+BotName: "TEST-BOT"
+DevMode: true
+DevUserID: "801084631159013378"
+CommandPrefix: "!"
+TerminalChannel: "all"
+TerminalChannelName: "Terminal"
+DefaultRole: "none"
+UserJoinEventEnabled: true
+UserLeaveEventEnabled: true
+logging: true

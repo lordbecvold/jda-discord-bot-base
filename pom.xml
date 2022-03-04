@@ -4,17 +4,61 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>jdaBotBase</groupId>
+    <properties>
+        <build.version>3.0.0</build.version>
+        <build.package>me.lordbecvold.bot</build.package>
+        <build.main>me.lordbecvold.bot.Main</build.main>
+        <build.java.version>17</build.java.version>
+    </properties>
+
+    <groupId>${build.package}</groupId>
     <artifactId>jdaBotBase</artifactId>
-    <version>2.0.0</version>
+    <version>${build.version}</version>
+    <packaging>jar</packaging>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${build.main}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${build.main}</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${build.java.version}</source>
+                    <target>${build.java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -32,9 +76,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.esotericsoftware.yamlbeans</groupId>
+            <artifactId>yamlbeans</artifactId>
+            <version>1.15</version>
+        </dependency>
+        <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.3</version>
+            <version>5.0.0-alpha.9</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -45,16 +94,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.6.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.27</version>
         </dependency>
     </dependencies>
 </project>
