@@ -2,6 +2,7 @@ package me.lordbecvold.bot.event.events;
 
 import me.lordbecvold.bot.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -11,7 +12,7 @@ public class UserJoinEvent extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         // Add role
         if (!Main.configManager.getConfigValue("DefaultRole").equalsIgnoreCase("none")) {
-            event.getGuild().addRoleToMember(event.getMember().getId(), event.getJDA().getRoleById(Long.parseLong(Main.configManager.getConfigValue("DefaultRole")))).queue();
+            event.getGuild().addRoleToMember(event.getMember().getUser(), event.getJDA().getRoleById(Long.parseLong(Main.configManager.getConfigValue("DefaultRole")))).queue();
         }
 
         // Create msg
