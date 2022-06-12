@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import me.lordbecvold.bot.command.ICommand;
 import java.util.List;
-
 public class ClearCommand implements ICommand {
     @Override
     public void run(List<String> args, MessageReceivedEvent event) {

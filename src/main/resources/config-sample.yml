@@ -12,7 +12,7 @@ DefaultRole: "none"
 UserJoinEventEnabled: true
 UserLeaveEventEnabled: true
 logging: true
-mysqlLogging: true
+mysqlLogging: false
 mysqlIP: "localhost"
 mysqlDatabase: "JDA_BOT"
 mysqlUser: "root"
