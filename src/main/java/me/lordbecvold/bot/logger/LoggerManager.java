@@ -29,9 +29,15 @@ public class LoggerManager {
             // Print info to console
             consoleLogger.logWithPrefix("Log manager", "log manager initiating - logging is enabled");
 
-            // Create logs dir if not exist
-            if (!Files.exists(Path.of("logs/"))) {
-                createlogDir();
+            // Check if mysql logging is enabled
+            if (!configManager.getConfigBolValue("mysqlLogging")) {
+
+                // Create logs dir if not exist
+                if (!Files.exists(Path.of("logs/"))) {
+                    createlogDir();
+                }
+            } else {
+                consoleLogger.logWithPrefix("Log manager", "Mysql logging is enabled!");
             }
         }
     }

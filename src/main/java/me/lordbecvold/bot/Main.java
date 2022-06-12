@@ -4,6 +4,7 @@ import me.lordbecvold.bot.config.ConfigManager;
 import me.lordbecvold.bot.event.EventManager;
 import me.lordbecvold.bot.logger.LoggerManager;
 import me.lordbecvold.bot.utils.console.ConsoleLogger;
+import me.lordbecvold.bot.utils.database.MysqlUtils;
 import me.lordbecvold.bot.utils.system.SystemUtil;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -22,8 +23,15 @@ public class Main {
     public static SystemUtil systemUtil = new SystemUtil();
     public static JDABuilder jdaBuilder = null;
 
+    public static MysqlUtils mysqlUtils = new MysqlUtils();
+
     // Main app function
     public static void main(String[] args) {
+
+        mysqlUtils.saveMSGLog("test", "idk", "msg");
+        mysqlUtils.saveERRORLog("idk", "guma");
+        mysqlUtils.saveNORMALLog("dudud", "pepek");
+
 
         // Initiate config system
         configManager.init();

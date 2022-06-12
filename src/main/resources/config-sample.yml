@@ -12,3 +12,8 @@ DefaultRole: "none"
 UserJoinEventEnabled: true
 UserLeaveEventEnabled: true
 logging: true
+mysqlLogging: true
+mysqlIP: "localhost"
+mysqlDatabase: "JDA_BOT"
+mysqlUser: "root"
+mysqlPasswword: "root"
