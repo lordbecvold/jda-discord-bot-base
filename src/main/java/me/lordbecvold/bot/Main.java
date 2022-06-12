@@ -1,7 +1,6 @@
 package me.lordbecvold.bot;
 
 import me.lordbecvold.bot.config.ConfigManager;
-import me.lordbecvold.bot.controllers.CommandController;
 import me.lordbecvold.bot.event.EventManager;
 import me.lordbecvold.bot.logger.LoggerManager;
 import me.lordbecvold.bot.utils.console.ConsoleLogger;
@@ -123,13 +122,6 @@ public class Main {
             } else {
                 consoleLogger.logError("Error", "Sorry bot Can't start...");
             }
-        }
-
-        // Init command controller
-        try {
-            CommandController.instance.init();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }
