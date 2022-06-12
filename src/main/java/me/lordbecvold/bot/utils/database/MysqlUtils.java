@@ -1,6 +1,7 @@
 package me.lordbecvold.bot.utils.database;
 
 import me.lordbecvold.bot.config.ConfigManager;
+import me.lordbecvold.bot.utils.file.FileUtils;
 import me.lordbecvold.bot.utils.system.TimeUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,6 +18,7 @@ public class MysqlUtils {
     //Inits
     public static ConfigManager configManager = new ConfigManager();
     public static TimeUtils timeUtils = new TimeUtils();
+    public static FileUtils fileUtils = new FileUtils();
 
     // create connect with mysql database
     public Connection getConnection() {
@@ -43,8 +45,12 @@ public class MysqlUtils {
     }
 
     public boolean isMysqlLogginEnabled() {
-        if (configManager.getConfigBolValue("mysqlLogging")) {
-            return true;
+        if (fileUtils.checkFileExist("config.yml")) {
+            if (configManager.getConfigBolValue("mysqlLogging")) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

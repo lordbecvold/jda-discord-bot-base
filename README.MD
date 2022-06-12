@@ -5,6 +5,7 @@
 - YML config system
 - Event system
 - Log system (msg, system, error)
+- Mysql log system
 - Command cli controller
 - Etc...
 
@@ -31,6 +32,11 @@
 - UserJoinEventEnabled - true or false
 - UserLeaveEventEnabled - true or false
 - logging - true or false
+- mysqlLogging - true or false
+- mysqlIP - Mysql/MariaDB server ip adress
+- mysqlDatabase - Mysql database name
+- mysqlUser - Mysql connection username
+- mysqlPassword - Mysql connection password
 
 
 ## Dependencies
@@ -44,3 +50,6 @@ This project requires Java 17.
 * yamlbeans
   * Version: **1.15**
   * [Website](https://github.com/EsotericSoftware/yamlbeans)
+* Mysql-connector
+  * Version: **8.0.29**
+  * [Website](https://dev.mysql.com/downloads/connector/j)
