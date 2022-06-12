@@ -42,6 +42,14 @@ public class MysqlUtils {
         }
     }
 
+    public boolean isMysqlLogginEnabled() {
+        if (configManager.getConfigBolValue("mysqlLogging")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Save msg log
     public void saveMSGLog(String author, String channel, String msg) {
         // Check if mysql logging is enabled
