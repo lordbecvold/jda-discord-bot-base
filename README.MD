@@ -1,6 +1,6 @@
 # JDA DISCORD BOT BASE
 
-# - Features
+# Components
 - Command System
 - YML config system
 - Event system
@@ -9,14 +9,14 @@
 - Command cli controller
 - Etc...
 
-# - Command manager
+# Command manager
 - Simple add new commands
 - You can only set a specific channel as the terminal channel
 - Included help command
 - Execute logger
 - Etc...
 
-# - Config system
+# Config system
 - Auto create config
 - All values in json file "config.yml"
 - token = Discord api token
@@ -37,7 +37,6 @@
 - mysqlDatabase - Mysql database name
 - mysqlUser - Mysql connection username
 - mysqlPassword - Mysql connection password
-
 
 ## Dependencies
 This project requires Java 17.
