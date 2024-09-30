@@ -52,3 +52,6 @@ This project requires Java 17.
 * Mysql-connector
   * Version: **8.0.29**
   * [Website](https://dev.mysql.com/downloads/connector/j)
+
+## License
+The project is open-sourced software licensed under the [MIT license](https://github.com/lukasbecvar/discord-bot/blob/main/LICENSE)
