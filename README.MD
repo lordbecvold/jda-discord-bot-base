@@ -1,5 +1,8 @@
 # JDA DISCORD BOT BASE
 
+# End of support
+This project is no longer being maintained or developed, and no further updates or support will be provided.
+
 # Components
 - Command System
 - YML config system
